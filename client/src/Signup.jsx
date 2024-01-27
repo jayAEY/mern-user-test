@@ -1,16 +1,23 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 const Signup = () => {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(name, email, password);
     axios
-      .post("", { name, email, passowrd })
-      .then((result) => console.log(result))
+      .post("http://localhost:3001/register", { name, email, password })
+      .then((result) => {
+        console.log(result);
+        navigate("/login");
+      })
       .catch((err) => console.log(err));
   };
 
@@ -29,7 +36,7 @@ const Signup = () => {
               autoComplete="off"
               name="email"
               className="form-control rounded-0"
-              onClick={(e) => setName(e.target.value)}
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
           <div className="mb-3">
@@ -42,7 +49,7 @@ const Signup = () => {
               autoComplete="off"
               name="email"
               className="form-control rounded"
-              onClick={(e) => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="mb-3">
@@ -54,7 +61,7 @@ const Signup = () => {
               placeholder="Enter Password"
               name="password"
               className="form-control rounded-0"
-              onClick={(e) => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <button
