@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const Signup = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
@@ -12,7 +12,7 @@ const Login = () => {
 
   return (
     <main>
-      <h1>Login</h1>
+      <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="email">Email: </label>
 
@@ -31,12 +31,12 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit">Login</button>
+        <button type="submit">Submit</button>
       </form>
-      <p>Don't have an account?</p>
-      <Link to="/signup"> Sign Up </Link>
+      <p>Already have an account ?</p>
+      <Link to="/login"> Login </Link>
     </main>
   );
 };
 
-export default Login;
+export default Signup;

@@ -1,6 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
-import Register from "./Register";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Signup from "./Signup";
 import Login from "./Login";
 import Home from "./Home";
 
@@ -9,16 +10,16 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route
-          path="/register"
-          element={Register}
+          path="/signup"
+          element={<Signup />}
         ></Route>
         <Route
           path="/login"
-          element={Login}
+          element={<Login />}
         ></Route>
         <Route
-          path="./home"
-          element={Home}
+          path="/home"
+          element={<Home />}
         ></Route>
       </Routes>
     </BrowserRouter>
