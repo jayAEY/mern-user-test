@@ -1,21 +1,42 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  let navigate = useNavigate();
 
-  let handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email, password);
+    // console.log(email, password);
+    axios
+      .post("http://localhost:3001/login", { email, password })
+      .then((res) => {
+        console.log(res);
+        res.data === "Success" && navigate("/home");
+      })
+      .catch((err) => console.log(err));
   };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   axios
+  //     .post("http://localhost:3001/login", { email, password })
+  //     .then((result) => {
+  //       console.log(result);
+  //       if (result.data === "Success") {
+  //         navigate("/home");
+  //       }
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
 
   return (
     <main>
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="email">Email: </label>
-
         <input
           type="email"
           placeholder="Email"
